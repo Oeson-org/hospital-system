@@ -2,6 +2,8 @@
 
 ## Demo
 
+![image](https://user-images.githubusercontent.com/46154514/151107327-c0a3095d-abd5-4d78-bdaa-a879158d69e0.png)
+
 ## Free Figma Community File
  - [Duplicate File](https://www.figma.com/community/file/1039837897183395483/Devias-Dashboard-Design-Library-Kit)
 
