@@ -64,3 +64,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# service account credentials
+hospital-server-2688c-firebase-adminsdk-ahdck-a3f851a689.json
