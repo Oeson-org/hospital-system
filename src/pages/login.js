@@ -145,21 +145,21 @@ const Login = () => {
               Dashboard
             </Button>
           </NextLink>
-          <form>
-            <Box sx={{ my: 5 }}>
-              {/* <Typography
-                color="textPrimary"
-                variant="h4"
-                align="center"
-              >
-                Sign in
-              </Typography> */}
-            </Box>
-            <Grid
-              container
-              spacing={3}
+
+          <Box sx={{ my: 5 }}>
+            <Typography
+              color="textPrimary"
+              variant="h4"
+              align="center"
             >
-              {/* <Grid
+              Sign in
+            </Typography>
+          </Box>
+          <Grid
+            container
+            spacing={3}
+          >
+            {/* <Grid
                 item
                 xs={12}
                 md={6}
@@ -176,162 +176,82 @@ const Login = () => {
                 </Button>
               </Grid> */}
 
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
-                <Button
-                  fullWidth
-                  color="error"
-                  startIcon={<GoogleIcon />}
-                  onClick={googleSignIn}
-                  size="large"
-                  variant="contained"
-                >
-                  Login with Google
-                </Button>
-                <br />
-              </Grid>
-
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
-
-                {/* <input value={mynumber} onChange={(e) => {
-                  setnumber(e.target.value)
-                }}
-                  placeholder="phone number" /> */}
-                <TextField
-                  error={Boolean(formik.touched.phone && formik.errors.phone)}
-                  fullWidth
-                  helperText={formik.touched.phone && formik.errors.phone}
-                  label="Phone Number"
-                  margin="normal"
-                  name="phone"
-                  onBlur={formik.handleBlur}
-                  onChange={(e) => {
-                    setnumber(e.target.value)
-                  }}
-                  type="phone"
-                  value={mynumber}
-                  variant="outlined"
-                />
-                <div id="recaptcha-container"></div>
-                <Button
-                  color="info"
-                  fullWidth
-                  startIcon={<P />}
-                  onClick={onSignInSubmit}
-                  size="large"
-                  variant="contained"
-                >
-
-                  Send SMS
-                </Button>
-                {/* <TextField
-                  // error={Boolean(formik.touched.phone && formik.errors.phone)}
-                  fullWidth
-                  // helperText={formik.touched.phone && formik.errors.phone}
-                  label="Verification Number"
-                  margin="normal"
-                  // name="otp"
-                  // onBlur={formik.handleBlur}
-                  onChange={(e) => {
-                    setotp(e.target.value)
-                  }}
-                  variant="outlined"
-                />
-                <Button
-                  color="info"
-                  fullWidth
-                  startIcon={<P />}
-                  onClick={onSignInSubmit}
-                  size="large"
-                  variant="contained"
-                >
-                  Verify
-                </Button> */}
-              </Grid>
-
-            </Grid>
-            {/* <Box
-              sx={{
-                pb: 1,
-                pt: 3
-              }}
+            <Grid
+              item
+              xs={16}
+              md={16}
             >
-              <Typography
-                align="center"
-                color="textSecondary"
-                variant="body1"
-              >
-                or login with email address
-              </Typography>
-            </Box>
-            <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
-              fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email Address"
-              margin="normal"
-              name="email"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.password && formik.errors.password)}
-              fullWidth
-              helperText={formik.touched.password && formik.errors.password}
-              label="Password"
-              margin="normal"
-              name="password"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="password"
-              value={formik.values.password}
-              variant="outlined"
-            />
-            <Box sx={{ py: 2 }}>
               <Button
-                color="primary"
-                disabled={formik.isSubmitting}
                 fullWidth
+                color="error"
+                startIcon={<GoogleIcon />}
+                onClick={googleSignIn}
                 size="large"
-                type="submit"
                 variant="contained"
               >
-                Sign In Now
+                Login with Google
               </Button>
-            </Box> */}
-            <br />
-            <Typography
-              color="textSecondary"
-              variant="body2"
+              <br />
+            </Grid>
+
+            <Grid
+              item
+              xs={16}
+              md={16}
             >
-              Don&apos;t have an account?
-              {' '}
-              <NextLink
-                href="/register"
+
+              <TextField
+                // error={Boolean(formik.touched.phone && formik.errors.phone)}
+                fullWidth
+                // helperText={formik.touched.phone && formik.errors.phone}
+                label="Phone Number"
+                margin="normal"
+                name="phone"
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  setnumber(e.target.value)
+                }}
+                // type="phone"
+                value={mynumber}
+                variant="outlined"
+              />
+              <div id="recaptcha-container"></div>
+              <Button
+                color="info"
+                fullWidth
+                startIcon={<P />}
+                onClick={onSignInSubmit}
+                size="large"
+                variant="contained"
               >
-                <Link
-                  to="/register"
-                  variant="subtitle2"
-                  underline="hover"
-                  sx={{
-                    cursor: 'pointer'
-                  }}
-                >
-                  Sign Up
-                </Link>
-              </NextLink>
-            </Typography>
-          </form>
+
+                Send SMS
+              </Button>
+            </Grid>
+
+          </Grid>
+          <br />
+          <Typography
+            color="textSecondary"
+            variant="body2"
+          >
+            Don&apos;t have an account?
+            {' '}
+            <NextLink
+              href="/register"
+            >
+              <Link
+                to="/register"
+                variant="subtitle2"
+                underline="hover"
+                sx={{
+                  cursor: 'pointer'
+                }}
+              >
+                Sign Up
+              </Link>
+            </NextLink>
+          </Typography>
         </Container>
       </Box>
     </>

@@ -40,11 +40,11 @@ const items = [
     icon: (<UserAddIcon fontSize="small" />),
     title: 'Register'
   },
-  {
-    href: '/settings',
-    icon: (<CogIcon fontSize="small" />),
-    title: 'Settings'
-  },
+  // {
+  //   href: '/settings',
+  //   icon: (<CogIcon fontSize="small" />),
+  //   title: 'Settings'
+  // },
   // {
   //   href: '/customers',
   //   icon: (<UsersIcon fontSize="small" />),

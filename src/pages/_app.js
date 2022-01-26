@@ -7,10 +7,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import { theme } from '../theme';
 
-import { getAuth, setPersistence, signInWithRedirect, inMemoryPersistence, GoogleAuthProvider } from "firebase/auth";
-import Login from './login';
-
-
 const clientSideEmotionCache = createEmotionCache();
 
 const App = (props) => {
@@ -19,25 +15,24 @@ const App = (props) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    // 
-    (<CacheProvider value={emotionCache}>
-      {/* <Head>
-          <title>
-            Material Kit Pro
-          </title>
-          <meta
-            name="viewport"
-            content="initial-scale=1, width=device-width"
-          />
-        </Head> */}
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <title>
+          Hospital Services
+        </title>
+        <meta
+          name="viewport"
+          content="initial-scale=1, width=device-width"
+        />
+      </Head>
 
-      (<LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {getLayout(<Component {...pageProps} />)}
         </ThemeProvider>
-      </LocalizationProvider>)
-    </CacheProvider>)
+      </LocalizationProvider>
+    </CacheProvider>
   );
 };
 
