@@ -70,7 +70,7 @@ class ErrorMessage extends response {
  * @param {string} message - message to be sent
  * @param {string} pages - number of pages of response
  * @param {data} data - data to be sent
- * @return {object} - response object
+ * @return {object} response object
  */
 const responseFactory = (message, pages, data) => {
   if (data === null) {
