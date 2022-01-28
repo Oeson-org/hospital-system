@@ -1,6 +1,7 @@
 // eslint-disable-next-line new-cap
 const router = require("express").Router();
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 const { v4: uuidv4 } = require("uuid");
 const response = require("../res/responses").responseFactory;
 const db = require("../services/db");
@@ -22,21 +23,22 @@ const checkAdmin = (req, res, next) => {
 const createBooking = async (req, res) => {
   const { from, to, userID } = req.body;
   functions.logger.info({ "Incoming Data": req.body });
+  const slot_id = uuidv4();
   const booking = {
-    createdBy: userID,
     from: from,
     to: to,
     attendee: [],
   };
-  const id = uuidv4();
-  functions.logger.log({ "ID": id, "Feeding Data": booking });
-  const bookingRef = await db.write("bookings", id, booking);
+  booking["from"] = admin.firestore.Timestamp.fromDate(new Date(booking["from"]));
+  booking["to"] = admin.firestore.Timestamp.fromDate(new Date(booking["to"]));
+  functions.logger.log({ "ID": userID, "Feeding Data": booking });
+  const bookingRef = await db.write("slots", userID, slot_id, booking);
   res.status(200).json(response(
-    "Booking created successfully",
+    "Slot created successfully",
     1,
-    { id: id, booking: bookingRef }
+    { slot_id: slot_id, booking: booking }
   ));
-  functions.logger.info({ id: id, booking: bookingRef });
+  functions.logger.info({ id: userID, slot: bookingRef });
 };
 router.post("/", checkAdmin, createBooking);
 module.exports = router;
