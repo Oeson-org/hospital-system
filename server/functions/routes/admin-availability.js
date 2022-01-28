@@ -3,7 +3,7 @@ const router = require("express").Router();
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { v4: uuidv4 } = require("uuid");
-const response = require("../res/responses").responseFactory;
+const response = require("../services/responses").responseFactory;
 const db = require("../services/db");
 // Uses a request body like:
 // { from: 2020-01-01<JS Date Type>, to: 2020-01-31<JS Date Type>,
@@ -25,6 +25,7 @@ const createBooking = async (req, res) => {
   functions.logger.info({ "Incoming Data": req.body });
   const slot_id = uuidv4();
   const booking = {
+    userID: userID,
     from: from,
     to: to,
     attendee: [],
@@ -32,7 +33,7 @@ const createBooking = async (req, res) => {
   booking["from"] = admin.firestore.Timestamp.fromDate(new Date(booking["from"]));
   booking["to"] = admin.firestore.Timestamp.fromDate(new Date(booking["to"]));
   functions.logger.log({ "ID": userID, "Feeding Data": booking });
-  const bookingRef = await db.write("slots", userID, slot_id, booking);
+  const bookingRef = await db.write("slots", slot_id, booking);
   res.status(200).json(response(
     "Slot created successfully",
     1,

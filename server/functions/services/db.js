@@ -8,12 +8,11 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-const writeToDB = async (collection, userID, slotID, data) => {
-  const collec = db.collection("admin");
+const writeToDB = async (collection, slotID, data) => {
+  const collec = db.collection(collection);
   // In case of document exists it would be considered as update and document will be merged with the new data
   try {
-    let r_data = await collec.doc(userID).collection("slots").doc(slotID).set(data);
-    // let r_data = await collec.doc(userID).set(data);
+    let r_data = await collec.doc(slotID).set(data);
     functions.logger.info({ data: r_data });
     return { data: r_data, error: null };
   } catch (err) {
