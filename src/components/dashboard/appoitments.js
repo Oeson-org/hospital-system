@@ -14,10 +14,12 @@ import {
   TableSortLabel,
   Tooltip
 } from '@mui/material';
+
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../severity-pill';
 
-const appoitments = [
+
+const appointments = [
   {
     id: uuid(),
     ref: 'CDD1049',
@@ -26,7 +28,7 @@ const appoitments = [
       name: 'Ekaterina Tankova'
     },
     createdAt: 1555016400000,
-    status: 'pending'
+    status: 'Ongoing'
   },
   {
     id: uuid(),
@@ -36,7 +38,7 @@ const appoitments = [
       name: 'Cao Yu'
     },
     createdAt: 1555016400000,
-    status: 'delivered'
+    status: 'Finished'
   },
   {
     id: uuid(),
@@ -46,7 +48,7 @@ const appoitments = [
       name: 'Alexa Richardson'
     },
     createdAt: 1554930000000,
-    status: 'refunded'
+    status: 'Canceled'
   },
   {
     id: uuid(),
@@ -56,7 +58,7 @@ const appoitments = [
       name: 'Anje Keizer'
     },
     createdAt: 1554757200000,
-    status: 'pending'
+    status: 'Ongoing'
   },
   {
     id: uuid(),
@@ -66,7 +68,7 @@ const appoitments = [
       name: 'Clarke Gillebert'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'Finished'
   },
   {
     id: uuid(),
@@ -76,11 +78,18 @@ const appoitments = [
       name: 'Adam Denisov'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'Finished'
   }
 ];
 
+const handleSort = () => {
+
+};
+
 export const Appoitments = (props) => (
+
+
+
   <Card {...props}>
     <CardHeader title="Appointments" />
     <PerfectScrollbar>
@@ -92,16 +101,17 @@ export const Appoitments = (props) => (
                 Appoiment Ref
               </TableCell>
               <TableCell>
-                Doctor
+                Patient Name
               </TableCell>
-              <TableCell sortDirection="desc">
+              <TableCell sortDirection="asc">
                 <Tooltip
                   enterDelay={300}
                   title="Sort"
                 >
                   <TableSortLabel
                     active
-                    direction="desc"
+                    direction="asc"
+                  // onClick={''}
                   >
                     Date
                   </TableSortLabel>
@@ -113,27 +123,27 @@ export const Appoitments = (props) => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {appoitments.map((appoitment) => (
+            {appointments.map((appointments) => (
               <TableRow
                 hover
-                key={appoitment.id}
+                key={appointments.id}
               >
                 <TableCell>
-                  {appoitment.ref}
+                  {appointments.ref}
                 </TableCell>
                 <TableCell>
-                  {appoitment.customer.name}
+                  {appointments.customer.name}
                 </TableCell>
                 <TableCell>
-                  {format(appoitment.createdAt, 'dd/MM/yyyy')}
+                  {format(appointments.createdAt, 'dd/MM/yyyy')}
                 </TableCell>
                 <TableCell>
                   <SeverityPill
-                    color={(appoitment.status === 'delivered' && 'success')
-                      || (appoitment.status === 'refunded' && 'error')
+                    color={(appointments.status === 'Finished' && 'success')
+                      || (appointments.status === 'Canceled' && 'error')
                       || 'warning'}
                   >
-                    {appoitment.status}
+                    {appointments.status}
                   </SeverityPill>
                 </TableCell>
               </TableRow>
@@ -154,9 +164,10 @@ export const Appoitments = (props) => (
         endIcon={<ArrowRightIcon fontSize="small" />}
         size="small"
         variant="text"
+        href="/customers"
       >
         View all
       </Button>
     </Box>
-  </Card>
+  </Card >
 );

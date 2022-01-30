@@ -11,11 +11,8 @@ import {
 
 const user = {
   avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
   jobTitle: 'Senior Developer',
   name: 'Katarina Smith',
-  timezone: 'GTM-7'
 };
 
 export const AccountProfile = (props) => (
@@ -43,7 +40,7 @@ export const AccountProfile = (props) => (
         >
           {user.name}
         </Typography>
-        <Typography
+        {/* <Typography
           color="textSecondary"
           variant="body2"
         >
@@ -54,7 +51,7 @@ export const AccountProfile = (props) => (
           variant="body2"
         >
           {user.timezone}
-        </Typography>
+        </Typography> */}
       </Box>
     </CardContent>
     <Divider />

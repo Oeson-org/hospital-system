@@ -8,7 +8,7 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 // import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
-import { Phone as P } from '../icons/phone';
+// import { Phone as P } from '../icons/phone';
 import { firebase } from "../components/firebase/firebase";
 import { getAuth, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, setPersistence, signInWithRedirect, inMemoryPersistence, GoogleAuthProvider } from "firebase/auth";
 
@@ -17,8 +17,8 @@ const Login = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123',
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
       email: Yup
@@ -39,23 +39,23 @@ const Login = () => {
     }
   });
 
-  // Inputs
-  const [mynumber, setnumber] = useState("");
-  const [otp, setotp] = useState('');
-  const [show, setshow] = useState(false);
-  const [final, setfinal] = useState('');
+  // // Inputs
+  // const [mynumber, setnumber] = useState("");
+  // const [otp, setotp] = useState('');
+  // const [show, setshow] = useState(false);
+  // const [final, setfinal] = useState('');
 
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const setUpRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-      'size': 'invisible',
-      'callback': (response) => {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        onSignInSubmit();
-      }
-    }, auth);
-  }
+  // const setUpRecaptcha = () => {
+  //   window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+  //     'size': 'invisible',
+  //     'callback': (response) => {
+  //       // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //       onSignInSubmit();
+  //     }
+  //   }, auth);
+  // }
 
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
@@ -78,46 +78,32 @@ const Login = () => {
       });
   }
 
-  const onSignInSubmit = (e) => {
-    e.preventDefault();
-    setUpRecaptcha();
-    const phoneNumber = mynumber;
-    const appVerifier = window.recaptchaVerifier;
+  // const onSignInSubmit = (e) => {
+  //   e.preventDefault();
+  //   setUpRecaptcha();
+  //   const phoneNumber = mynumber;
+  //   const appVerifier = window.recaptchaVerifier;
 
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        window.confirmationResult = confirmationResult;
-        console.log('Captcha Resolved')
-        const code = window.prompt("Enter OTP");
-        confirmationResult.confirm(code).then((result) => {
-          // User signed in successfully.
-          const user = result.user;
+  //   signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+  //     .then((confirmationResult) => {
+  //       // SMS sent. Prompt user to type the code from the message, then sign the
+  //       // user in with confirmationResult.confirm(code).
+  //       window.confirmationResult = confirmationResult;
+  //       console.log('Captcha Resolved')
+  //       const code = window.prompt("Enter OTP");
+  //       confirmationResult.confirm(code).then((result) => {
+  //         // User signed in successfully.
+  //         const user = result.user;
 
-        }).catch((error) => {
-          console.error("Invalid Number")
-        });
+  //       }).catch((error) => {
+  //         console.error("Invalid Number")
+  //       });
 
-      }).catch((error) => {
-        console.error("SMS Error")
-        // ...
-      });
-  }
-
-  // setPersistence(auth, inMemoryPersistence)
-  //   .then(() => {
-
-  //     // In memory persistence will be applied to the signed in Google user
-  //     // even though the persistence was set to 'none' and a page redirect
-  //     // occurred.
-  //     return signInWithRedirect(auth, provider);
-  //   })
-  //   .catch((error) => {
-  //     // Handle Errors here.
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //   });
+  //     }).catch((error) => {
+  //       console.error("SMS Error")
+  //       // ...
+  //     });
+  // }
 
   return (
     <>
@@ -149,7 +135,7 @@ const Login = () => {
           <Box sx={{ my: 5 }}>
             <Typography
               color="textPrimary"
-              variant="h4"
+              variant="h2"
               align="center"
             >
               Sign in
@@ -159,23 +145,6 @@ const Login = () => {
             container
             spacing={3}
           >
-            {/* <Grid
-                item
-                xs={12}
-                md={6}
-              >
-                <Button
-                  color="info"
-                  fullWidth
-                  startIcon={<FacebookIcon />}
-                  onClick={formik.handleSubmit}
-                  size="large"
-                  variant="contained"
-                >
-                  Login with Facebook
-                </Button>
-              </Grid> */}
-
             <Grid
               item
               xs={16}
@@ -193,43 +162,61 @@ const Login = () => {
               </Button>
               <br />
             </Grid>
-
-            <Grid
-              item
-              xs={16}
-              md={16}
-            >
-
-              <TextField
-                // error={Boolean(formik.touched.phone && formik.errors.phone)}
-                fullWidth
-                // helperText={formik.touched.phone && formik.errors.phone}
-                label="Phone Number"
-                margin="normal"
-                name="phone"
-                onBlur={formik.handleBlur}
-                onChange={(e) => {
-                  setnumber(e.target.value)
-                }}
-                // type="phone"
-                value={mynumber}
-                variant="outlined"
-              />
-              <div id="recaptcha-container"></div>
-              <Button
-                color="info"
-                fullWidth
-                startIcon={<P />}
-                onClick={onSignInSubmit}
-                size="large"
-                variant="contained"
-              >
-
-                Send SMS
-              </Button>
-            </Grid>
-
           </Grid>
+          <Box
+            sx={{
+              pb: 1,
+              pt: 3
+            }}
+          >
+            <Typography
+              align="center"
+              color="textSecondary"
+              variant="body1"
+            >
+              or login with email address
+            </Typography>
+          </Box>
+          <TextField
+            error={Boolean(formik.touched.email && formik.errors.email)}
+            fullWidth
+            helperText={formik.touched.email && formik.errors.email}
+            label="Email Address"
+            margin="normal"
+            name="email"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            type="email"
+            value={formik.values.email}
+            variant="outlined"
+          />
+          <TextField
+            error={Boolean(formik.touched.password && formik.errors.password)}
+            fullWidth
+            helperText={formik.touched.password && formik.errors.password}
+            label="Password"
+            margin="normal"
+            name="password"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            type="password"
+            value={formik.values.password}
+            variant="outlined"
+          />
+          <Box sx={{ py: 2 }}>
+            <Button
+              color="primary"
+              disabled={formik.isSubmitting}
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+            >
+              Sign In Now
+            </Button>
+          </Box>
+
+
           <br />
           <Typography
             color="textSecondary"

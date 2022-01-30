@@ -1,4 +1,7 @@
 import firebase from 'firebase/compat/app';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyC52EwaYj8HhuwwqMqX4giHPW3x0Jp-gTk",
@@ -16,7 +19,7 @@ const firebaseConfig = {
 
 // window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth);
 firebase.initializeApp(firebaseConfig);
-
+const db = getFirestore();
 export { firebase };
 
 
