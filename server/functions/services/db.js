@@ -27,7 +27,7 @@ const readFromDB = async (collection, key, condition) => {
   try {
     if (key) {
       r_data = await collec.doc(key).get();
-    } else if (condition) {
+    } else if (key && condition) {
       r_data = await collec.where(condition).get();
     } else {
       r_data = await collec.get();
