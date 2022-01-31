@@ -22,11 +22,17 @@ const findBooking = async (req, res, next) => {
         log("debug", "couldnot create timestamp");
     }
     log("info", { from: from.valueOf(), to: to.valueOf() });
-    res.status(200).json(response("Booking found", 1, "ok"));
     // Finding booking based on a condition
     //TODO: Add condition to find booking
-    let condition = from.valueOf() <= doc.data().from.valueOf() && to.valueOf() >= doc.data().to.valueOf();
-    const booking = await db.read("slots", null, condition);
+    let condition = [{ key: 'from', operator: '>=', value: from }, { key: 'to', operator: '<=', value: to }];
+    try {
+        let booking = await db.read("slots", null, condition);
+        log("info", { booking: booking });
+        res.status(200).json(response("Booking found", 1, "ok"));
+    } catch (err) {
+        log("error", { error: err });
+        res.status(500).json(response("Booking not found"));
+    }
 }
 // request will be in the form /?from="Date"&to="Date"
 router.get("/", checkRequest, findBooking);
