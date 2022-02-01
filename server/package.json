@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Oeson-org/hospital-system#readme",
   "dependencies": {
+    "dayjs": "^1.10.7",
     "firebase": "^9.6.4",
     "uuid": "^8.3.2"
   },
