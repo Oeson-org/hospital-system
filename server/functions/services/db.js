@@ -25,10 +25,10 @@ const readFromDB = async (collection, key, condition) => {
   let r_data;
   const collec = db.collection(collection);
   try {
-    if (key) {
+    if (key && condition) {
+      r_data = await collec.where(condition).get();
+    } else if (key) {
       r_data = await collec.doc(key).get();
-    } else if (condition) {
-      r_data = await collec.where(condition[0].key, condition[0].operator, condition[0].value).where(condition[1].key, condition[1].operator, condition[1].value).get();
     } else {
       r_data = await collec.get();
     }

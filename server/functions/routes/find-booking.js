@@ -4,8 +4,9 @@ const admin = require("firebase-admin");
 const response = require("../services/responses").responseFactory;
 const db = require("../services/db");
 const log = require("../services/logger").log;
+
 const checkRequest = (req, res, next) => {
-    if (req.query.from && req.query.to) {
+    if (req.query.date) {
         next();
     } else {
         res.status(400).json(response("Invalid Request"));
@@ -13,27 +14,20 @@ const checkRequest = (req, res, next) => {
 }
 
 const findBooking = async (req, res, next) => {
-    let from = req.query.from;
-    let to = req.query.to;
-    try {
-        from = admin.firestore.Timestamp.fromDate(new Date(from));
-        to = admin.firestore.Timestamp.fromDate(new Date(to));
-    } catch (err) {
-        log("debug", "couldnot create timestamp");
-    }
-    log("info", { from: from.valueOf(), to: to.valueOf() });
+    let date = req.query.date;
+    log("info", { date: date });
     // Finding booking based on a condition
     //TODO: Add condition to find booking
-    let condition = [{ key: 'from', operator: '>=', value: from }, { key: 'to', operator: '<=', value: to }];
+    //let condition = { key: "date", operator: '==', value: date };
     try {
-        let booking = await db.read("slots", null, condition);
+        let booking = await db.read("slots", date);
         log("info", { booking: booking });
-        res.status(200).json(response("Booking found", 1, "ok"));
+        res.status(200).json(response("Booking found", 1, booking));
     } catch (err) {
         log("error", { error: err });
         res.status(500).json(response("Booking not found"));
     }
 }
-// request will be in the form /?from="Date"&to="Date"
+// request will be in the form /?date="Date"
 router.get("/", checkRequest, findBooking);
 module.exports = router;
