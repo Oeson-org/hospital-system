@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,14 +15,14 @@ import {
   Typography
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { firebase } from "../components/firebase/firebase";
 
 const Register = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: '',
-      firstName: '',
-      lastName: '',
       password: '',
       policy: false
     },
@@ -33,16 +34,6 @@ const Register = () => {
         .max(255)
         .required(
           'Email is required'),
-      firstName: Yup
-        .string()
-        .max(255)
-        .required(
-          'First name is required'),
-      lastName: Yup
-        .string()
-        .max(255)
-        .required(
-          'Last name is required'),
       password: Yup
         .string()
         .max(255)
@@ -54,11 +45,39 @@ const Register = () => {
           [true],
           'This field must be checked'
         )
+      // firstName: Yup
+      //   .string()
+      //   .max(255)
+      //   .required(
+      //     'First name is required'),
+      // lastName: Yup
+      //   .string()
+      //   .max(255)
+      //   .required(
+      //     'Last name is required'),
     }),
     onSubmit: () => {
-      router.push('/');
+      router.push('/login');
     }
   });
+
+  const auth = getAuth();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const signUp = e => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then(user => {
+      console.lop(user)
+    }).catch(err => {
+      console.log(err)
+    })
+
+  }
+
 
   return (
     <>
@@ -104,7 +123,7 @@ const Register = () => {
                 Use your email to create a new account
               </Typography>
             </Box>
-            <TextField
+            {/* <TextField
               error={Boolean(formik.touched.firstName && formik.errors.firstName)}
               fullWidth
               helperText={formik.touched.firstName && formik.errors.firstName}
@@ -127,7 +146,7 @@ const Register = () => {
               onChange={formik.handleChange}
               value={formik.values.lastName}
               variant="outlined"
-            />
+            /> */}
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
               fullWidth
@@ -140,6 +159,7 @@ const Register = () => {
               type="email"
               value={formik.values.email}
               variant="outlined"
+              ref={emailRef}
             />
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
@@ -153,6 +173,7 @@ const Register = () => {
               type="password"
               value={formik.values.password}
               variant="outlined"
+              ref={passwordRef}
             />
             <Box
               sx={{
@@ -199,6 +220,7 @@ const Register = () => {
                 size="large"
                 type="submit"
                 variant="contained"
+                onClick={signUp}
               >
                 Sign Up Now
               </Button>

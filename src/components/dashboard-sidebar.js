@@ -6,12 +6,11 @@ import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/ma
 import { User as UserIcon } from '../icons/user';
 import { UserAdd as UserAddIcon } from '../icons/user-add';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
-import { Cog as CogIcon } from '../icons/cog';
 import { Lock as LockIcon } from '../icons/lock';
-
-// import { Selector as SelectorIcon } from '../icons/selector';
+import { Selector as SelectorIcon } from '../icons/selector';
+import { Cog as CogIcon } from '../icons/cog';
+import { Users as UsersIcon } from '../icons/users';
 // import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag';
-// import { Users as UsersIcon } from '../icons/users';
 // import { XCircle as XCircleIcon } from '../icons/x-circle';
 // import { Logo } from './logo';
 // import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -29,7 +28,11 @@ const items = [
     icon: (<UserIcon fontSize="small" />),
     title: 'Account'
   },
-
+  {
+    href: '/queries',
+    icon: (<SelectorIcon fontSize="small" />),
+    title: 'Query'
+  },
   {
     href: '/login',
     icon: (<LockIcon fontSize="small" />),
@@ -41,15 +44,16 @@ const items = [
     title: 'Register'
   },
   // {
-  //   href: '/settings',
-  //   icon: (<CogIcon fontSize="small" />),
-  //   title: 'Settings'
-  // },
-  // {
   //   href: '/customers',
   //   icon: (<UsersIcon fontSize="small" />),
   //   title: 'Customers'
   // },
+  // {
+  //   href: '/settings',
+  //   icon: (<CogIcon fontSize="small" />),
+  //   title: 'Settings'
+  // },
+
   // {
   //   href: '/products',
   //   icon: (<ShoppingBagIcon fontSize="small" />),

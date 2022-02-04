@@ -3,7 +3,6 @@ import { Box, Container, Grid } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
 import { Appoitments } from '../components/dashboard/appoitments';
 
-
 // import { Budget } from '../components/dashboard/budget';
 // import { LatestProducts } from '../components/dashboard/latest-products';
 // import { Sales } from '../components/dashboard/sales';

@@ -6,11 +6,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
+import { auth, googleProvider, popOut } from '../components/firebase/firebase';
+
+// import { Facebook as FacebookIcon } from '../icons/facebook';
 // import { Phone as P } from '../icons/phone';
-import { firebase } from "../components/firebase/firebase";
-import { getAuth, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, setPersistence, signInWithRedirect, inMemoryPersistence, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
 
@@ -39,26 +39,8 @@ const Login = () => {
     }
   });
 
-  // // Inputs
-  // const [mynumber, setnumber] = useState("");
-  // const [otp, setotp] = useState('');
-  // const [show, setshow] = useState(false);
-  // const [final, setfinal] = useState('');
-
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  // const setUpRecaptcha = () => {
-  //   window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-  //     'size': 'invisible',
-  //     'callback': (response) => {
-  //       // reCAPTCHA solved, allow signInWithPhoneNumber.
-  //       onSignInSubmit();
-  //     }
-  //   }, auth);
-  // }
-
   const googleSignIn = () => {
-    signInWithPopup(auth, provider)
+    popOut(auth, googleProvider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -77,33 +59,6 @@ const Login = () => {
         // ...
       });
   }
-
-  // const onSignInSubmit = (e) => {
-  //   e.preventDefault();
-  //   setUpRecaptcha();
-  //   const phoneNumber = mynumber;
-  //   const appVerifier = window.recaptchaVerifier;
-
-  //   signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-  //     .then((confirmationResult) => {
-  //       // SMS sent. Prompt user to type the code from the message, then sign the
-  //       // user in with confirmationResult.confirm(code).
-  //       window.confirmationResult = confirmationResult;
-  //       console.log('Captcha Resolved')
-  //       const code = window.prompt("Enter OTP");
-  //       confirmationResult.confirm(code).then((result) => {
-  //         // User signed in successfully.
-  //         const user = result.user;
-
-  //       }).catch((error) => {
-  //         console.error("Invalid Number")
-  //       });
-
-  //     }).catch((error) => {
-  //       console.error("SMS Error")
-  //       // ...
-  //     });
-  // }
 
   return (
     <>
