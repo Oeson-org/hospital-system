@@ -51,8 +51,22 @@ const deleteFromDB = async (collection, key) => {
   }
 }
 
+const findSlots = async (collection, date, time) => {
+  let r_data;
+  const collec = db.collection(collection).doc(date);
+  try {
+    r_data = await collec.collection("slots").where("time", "==", time).get();
+    return { data: r_data, error: null };
+  }
+  catch (err) {
+    functions.logger.error(err);
+    return { data: null, error: err };
+  }
+}
+
 module.exports = {
   write: writeToDB,
   read: readFromDB,
-  delete: deleteFromDB
+  delete: deleteFromDB,
+  findSlots: findSlots
 }
