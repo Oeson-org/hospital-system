@@ -55,6 +55,8 @@ const findSlots = async (collection, date, time) => {
   let r_data;
   const collec = db.collection(collection).doc(date);
   try {
+    //TODO: Fetch the eaxt document from the array of slot documents
+    // FIXME: Can use a filter function to filter the array of documents
     r_data = await collec.collection("slots").where("time", "==", time).get();
     return { data: r_data, error: null };
   }
