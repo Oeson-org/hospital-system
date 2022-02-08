@@ -22,10 +22,10 @@ const findBooking = async (req, res, next) => {
     try {
         let booking = await db.read("slots", date);
         log("info", { booking: booking });
-        res.status(200).json(response("Booking found", 1, booking));
+        res.status(200).json(response("Slots found", 1, booking.data._fieldsProto));
     } catch (err) {
         log("error", { error: err });
-        res.status(500).json(response("Booking not found"));
+        res.status(500).json(response("Slots not found"));
     }
 }
 // request will be in the form /?date="Date"
