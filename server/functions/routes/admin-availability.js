@@ -41,6 +41,7 @@ const createBooking = async (req, res) => {
   log("info", { "Incoming Data": req.body });
   let string_date = date;
   slots = generateSlotMap(starttime, endtime, slotspan, 0);
+  log("info", { "Generated Slots": slots });
   const booking = {
     date,
     slotspan,
