@@ -4,6 +4,8 @@ const db = require("../services/db");
 const { v4: uuidv4 } = require("uuid");
 const logger = require("../services/logger");
 const checkRequest = (req, res, next) => {
+    // time should be in 24 hours format hh:mm:ss
+    // like 08:45:00
     if (req.body.date && req.body.time && req.body.name && (req.body.email || req.body.phone) && req.body.message) {
         next();
     } else {

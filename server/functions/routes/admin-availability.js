@@ -3,7 +3,7 @@ const router = require("express").Router();
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { v4: uuidv4 } = require("uuid");
-const dayjs = require('dayjs')
+const dayjs = require('dayjs');
 const response = require("../services/responses").responseFactory;
 const db = require("../services/db");
 const log = require("../services/logger").log;
@@ -24,23 +24,23 @@ const checkAdmin = (req, res, next) => {
 };
 function generateSlotMap(start, end, span, gap) {
   if (!start) return {}
-
-  let slots = { [start]: { id: uuidv4(), appnmt_id: null } };
+  let slots = { [start.split("T")[1].split(".")[0]]: { id: uuidv4(), appnmt_id: null } };
   let lastSlot = dayjs(end).subtract(span + gap, "minute").toJSON();
   while (lastSlot > start) {
     let nextStart = dayjs(start)
       .add(span + gap, "minute")
       .toJSON();
-    slots[nextStart] = { id: uuidv4(), appnmt_id: null };
+
+    slots[nextStart.split("T")[1].split(".")[0]] = { id: uuidv4(), appnmt_id: null };
     start = nextStart;
   }
   return slots;
 }
 const createBooking = async (req, res) => {
-  const { date, slotspan, starttime, endtime } = req.body;
+  const { date, slotspan, gap, starttime, endtime } = req.body;
   log("info", { "Incoming Data": req.body });
   let string_date = date;
-  slots = generateSlotMap(starttime, endtime, slotspan, 0);
+  slots = generateSlotMap(starttime, endtime, slotspan, gap);
   log("info", { "Generated Slots": slots });
   const booking = {
     date,
