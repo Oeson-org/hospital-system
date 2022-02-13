@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Box,
@@ -17,83 +16,14 @@ import {
 
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../severity-pill';
+import { appointments } from '../../__mocks__/appointments'
 
-
-const appointments = [
-  {
-    id: uuid(),
-    ref: 'CDD1049',
-    amount: 30.5,
-    customer: {
-      name: 'Ekaterina Tankova'
-    },
-    createdAt: 1555016400000,
-    status: 'Ongoing'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1048',
-    amount: 25.1,
-    customer: {
-      name: 'Cao Yu'
-    },
-    createdAt: 1555016400000,
-    status: 'Finished'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1047',
-    amount: 10.99,
-    customer: {
-      name: 'Alexa Richardson'
-    },
-    createdAt: 1554930000000,
-    status: 'Canceled'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1046',
-    amount: 96.43,
-    customer: {
-      name: 'Anje Keizer'
-    },
-    createdAt: 1554757200000,
-    status: 'Ongoing'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1045',
-    amount: 32.54,
-    customer: {
-      name: 'Clarke Gillebert'
-    },
-    createdAt: 1554670800000,
-    status: 'Finished'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1044',
-    amount: 16.76,
-    customer: {
-      name: 'Adam Denisov'
-    },
-    createdAt: 1554670800000,
-    status: 'Finished'
-  }
-];
-
-const handleSort = () => {
-
-};
-
-export const Appoitments = (props) => (
-
-
+export const Appointments = (props) => (
 
   <Card {...props}>
     <CardHeader title="Appointments" />
     <PerfectScrollbar>
-      <Box sx={{ minWidth: 800 }}>
+      <Box sx={{ maxWidth: 800 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -123,27 +53,27 @@ export const Appoitments = (props) => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {appointments.map((appointments) => (
+            {appointments.map((appointment) => (
               <TableRow
                 hover
-                key={appointments.id}
+                key={appointment.id}
               >
                 <TableCell>
-                  {appointments.ref}
+                  {appointment.ref}
                 </TableCell>
                 <TableCell>
-                  {appointments.customer.name}
+                  {appointment.customer.name}
                 </TableCell>
                 <TableCell>
-                  {format(appointments.createdAt, 'dd/MM/yyyy')}
+                  {format(appointment.createdAt, 'dd/MM/yyyy')}
                 </TableCell>
                 <TableCell>
                   <SeverityPill
-                    color={(appointments.status === 'Finished' && 'success')
-                      || (appointments.status === 'Canceled' && 'error')
+                    color={(appointment.status === 'Finished' && 'success')
+                      || (appointment.status === 'Canceled' && 'error')
                       || 'warning'}
                   >
-                    {appointments.status}
+                    {appointment.status}
                   </SeverityPill>
                 </TableCell>
               </TableRow>
@@ -156,7 +86,7 @@ export const Appoitments = (props) => (
       sx={{
         display: 'flex',
         justifyContent: 'flex-end',
-        p: 2
+        p: 3
       }}
     >
       <Button
@@ -164,7 +94,7 @@ export const Appoitments = (props) => (
         endIcon={<ArrowRightIcon fontSize="small" />}
         size="small"
         variant="text"
-        href="/customers"
+        href="/queries"
       >
         View all
       </Button>

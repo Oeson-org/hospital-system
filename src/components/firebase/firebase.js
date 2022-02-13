@@ -1,7 +1,7 @@
 // import firebase from 'firebase/compat/app';
 import { initializeApp } from "firebase/app"
-import { getFirestore } from 'firebase/firestore';
-import { getAuth, signInWithPopup as popOut, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
+import { getAuth, signInWithPopup as popOut, GoogleAuthProvider, signOut } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC52EwaYj8HhuwwqMqX4giHPW3x0Jp-gTk",
@@ -15,8 +15,37 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+const gProvider = new GoogleAuthProvider(app);
 const db = getFirestore(app);
+const out = () => {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+}
+
+const signInWithGoogle = async () => {
+    try {
+        const res = await popOut(auth, gProvider);
+        const user = res.user;
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const docs = await getDocs(q);
+        if (docs.docs.length === 0) {
+            await addDoc(collection(db, "users"), {
+                uid: user.uid,
+                name: user.displayName,
+                authProvider: "google",
+                email: user.email,
+            });
+        }
+        res.push('/');
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
 
 
-export { db, app, auth, googleProvider, popOut };
+
+export { db, app, auth, signInWithGoogle, out };

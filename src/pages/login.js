@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Google as GoogleIcon } from '../icons/google';
-import { auth, googleProvider, popOut } from '../components/firebase/firebase';
-
+import { auth, signInWithGoogle } from '../components/firebase/firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
 // import { Facebook as FacebookIcon } from '../icons/facebook';
 // import { Phone as P } from '../icons/phone';
 
 const Login = () => {
 
-  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -39,27 +37,6 @@ const Login = () => {
     }
   });
 
-  const googleSignIn = () => {
-    popOut(auth, googleProvider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // ...
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  }
-
   return (
     <>
       <Head>
@@ -75,9 +52,10 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
+          {/* <NextLink
             href="/"
             passHref
+
           >
             <Button
               component="a"
@@ -85,7 +63,7 @@ const Login = () => {
             >
               Dashboard
             </Button>
-          </NextLink>
+          </NextLink> */}
 
           <Box sx={{ my: 5 }}>
             <Typography
@@ -109,9 +87,10 @@ const Login = () => {
                 fullWidth
                 color="error"
                 startIcon={<GoogleIcon />}
-                onClick={googleSignIn}
+                onClick={signInWithGoogle}
                 size="large"
                 variant="contained"
+
               >
                 Login with Google
               </Button>
@@ -166,8 +145,9 @@ const Login = () => {
               size="large"
               type="submit"
               variant="contained"
+            // href='/'
             >
-              Sign In Now
+              Sign In
             </Button>
           </Box>
 

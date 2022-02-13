@@ -4,7 +4,7 @@ import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/m
 import MenuIcon from '@mui/icons-material/Menu';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { FiLogOut } from 'react-icons/fi'
-import { getAuth, signOut } from "firebase/auth";
+import { out } from "firebase/auth";
 // import SearchIcon from '@mui/icons-material/Search';
 // import { Bell as BellIcon } from '../icons/bell';
 // import { Users as UsersIcon } from '../icons/users';
@@ -16,16 +16,6 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
-
-  const logout = () => {
-    const auth = getAuth();
-    // getAuth().signOut();
-    signOut(auth).then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-    });
-  }
 
 
 
@@ -85,8 +75,8 @@ export const DashboardNavbar = (props) => {
           <Tooltip title="Sign Out">
             <IconButton
               sx={{ ml: 1 }}
-              onClick={logout}
-
+              onClick={out}
+              href='/login'
             >
               <FiLogOut fontSize="small" />
             </IconButton>

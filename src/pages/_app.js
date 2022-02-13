@@ -16,10 +16,11 @@ const App = (props) => {
 
   return (
     <CacheProvider value={emotionCache}>
+
       <Head>
-        <title>
+        {/* <title>
           Hospital Services
-        </title>
+        </title> */}
         <meta
           name="viewport"
           content="initial-scale=1, width=device-width"

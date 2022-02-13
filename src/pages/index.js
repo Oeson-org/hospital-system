@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Box, Container, Grid } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { Appoitments } from '../components/dashboard/appoitments';
+import { Appointments } from '../components/dashboard/appointments';
 
 // import { Budget } from '../components/dashboard/budget';
 // import { LatestProducts } from '../components/dashboard/latest-products';
@@ -99,7 +99,7 @@ const Dashboard = () => (
             xl={9}
             xs={12}
           >
-            <Appoitments />
+            <Appointments />
           </Grid>
         </Grid>
       </Container>
