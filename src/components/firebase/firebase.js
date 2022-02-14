@@ -1,7 +1,7 @@
 // import firebase from 'firebase/compat/app';
 import { initializeApp } from "firebase/app"
 import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
-import { getAuth, signInWithPopup as popOut, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup as popOut, GoogleAuthProvider, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC52EwaYj8HhuwwqMqX4giHPW3x0Jp-gTk",
@@ -22,7 +22,7 @@ const out = () => {
         // Sign-out successful.
     }).catch((error) => {
         // An error happened.
-    });
+    }).then(clear);
 }
 
 const signInWithGoogle = async () => {
@@ -39,13 +39,26 @@ const signInWithGoogle = async () => {
                 email: user.email,
             });
         }
-        res.push('/');
     } catch (err) {
         console.error(err);
         alert(err.message);
     }
 };
 
+const signUp = e => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then(user => {
+      console.lop(user)
+    }).catch(err => {
+      console.log(err)
+    }).then(router.push('/login'))  
 
+  }
 
-export { db, app, auth, signInWithGoogle, out };
+const user = auth.currentUser;
+
+export { db, app, auth, signInWithGoogle, out, user, signUp };

@@ -15,8 +15,8 @@ import {
   Typography
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { firebase } from "../components/firebase/firebase";
+import { getAuth, createUserWithEmailAndPassword, signUp } from "firebase/auth";
+
 
 const Register = () => {
   const router = useRouter();
@@ -64,19 +64,19 @@ const Register = () => {
   const auth = getAuth();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const signUp = e => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    ).then(user => {
-      console.lop(user)
-    }).catch(err => {
-      console.log(err)
-    })
+  // const signUp = e => {
+  //   e.preventDefault();
+  //   createUserWithEmailAndPassword(
+  //     auth,
+  //     emailRef.current.value,
+  //     passwordRef.current.value
+  //   ).then(user => {
+  //     console.lop(user)
+  //   }).catch(err => {
+  //     console.log(err)
+  //   }).then(router.push('/login'))  
 
-  }
+  // }
 
 
   return (
@@ -96,7 +96,7 @@ const Register = () => {
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
+          {/* <NextLink
             href="/"
             passHref
           >
@@ -106,7 +106,7 @@ const Register = () => {
             >
               Dashboard
             </Button>
-          </NextLink>
+          </NextLink> */}
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography

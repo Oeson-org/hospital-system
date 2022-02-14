@@ -16,6 +16,8 @@ import { Users as UsersIcon } from '../icons/users';
 // import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 // import NextLink from 'next/link';
 
+import { user } from './firebase/firebase'
+
 
 const items = [
   {
@@ -38,11 +40,11 @@ const items = [
     icon: (<LockIcon fontSize="small" />),
     title: 'Login'
   },
-  {
-    href: '/register',
-    icon: (<UserAddIcon fontSize="small" />),
-    title: 'Register'
-  },
+  // {
+  //   href: '/register',
+  //   icon: (<UserAddIcon fontSize="small" />),
+  //   title: 'Register'
+  // },
   // {
   //   href: '/customers',
   //   icon: (<UsersIcon fontSize="small" />),

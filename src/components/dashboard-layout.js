@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { DashboardNavbar } from './dashboard-navbar';
 import { DashboardSidebar } from './dashboard-sidebar';
+import { user } from './firebase/firebase';
+import { useRouter } from 'next/router';
+import NotFound from 'src/pages/404';
 
 const DashboardLayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -17,6 +20,16 @@ const DashboardLayoutRoot = styled('div')(({ theme }) => ({
 export const DashboardLayout = (props) => {
   const { children } = props;
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      router.push('/login')
+    }
+  }, [user])
+
+  const noUser = () => {
+    
+  }
 
   return (
     <>

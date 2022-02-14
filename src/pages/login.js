@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Google as GoogleIcon } from '../icons/google';
-import { auth, signInWithGoogle } from '../components/firebase/firebase';
-import { useAuthState } from "react-firebase-hooks/auth";
+import { signInWithGoogle} from '../components/firebase/firebase';
 // import { Facebook as FacebookIcon } from '../icons/facebook';
 // import { Phone as P } from '../icons/phone';
 
 const Login = () => {
 
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -52,7 +52,7 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-          {/* <NextLink
+          {/* {(user) ? <NextLink
             href="/"
             passHref
 
@@ -63,7 +63,7 @@ const Login = () => {
             >
               Dashboard
             </Button>
-          </NextLink> */}
+          </NextLink> : <></>} */}
 
           <Box sx={{ my: 5 }}>
             <Typography
@@ -90,7 +90,6 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 size="large"
                 variant="contained"
-
               >
                 Login with Google
               </Button>
@@ -145,7 +144,6 @@ const Login = () => {
               size="large"
               type="submit"
               variant="contained"
-            // href='/'
             >
               Sign In
             </Button>
