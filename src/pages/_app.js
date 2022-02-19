@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { CacheProvider } from '@emotion/react';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';

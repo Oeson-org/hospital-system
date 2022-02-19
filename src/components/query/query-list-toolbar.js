@@ -29,19 +29,19 @@ export const QueryListToolbar = (props) => (
         Queries
       </Typography>
       <Box sx={{ m: 1 }}>
-        <Button
+        {/* <Button
           color="primary"
           variant="contained"
         >
           Add Query
-        </Button>
+        </Button> */}
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>
       <Card>
         <CardContent>
           <Box sx={{ maxWidth: 500 }}>
-            <TextField
+            {/* <TextField
               fullWidth
               InputProps={{
                 startAdornment: (
@@ -57,7 +57,8 @@ export const QueryListToolbar = (props) => (
               }}
               placeholder="Search Query By Name"
               variant="outlined"
-            />
+            /> */}
+            More Features Coming Soon
           </Box>
         </CardContent>
       </Card>

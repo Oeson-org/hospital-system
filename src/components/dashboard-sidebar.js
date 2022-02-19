@@ -36,10 +36,20 @@ const items = [
     title: 'Query'
   },
   {
-    href: '/login',
+    href: '/clinicStatus',
     icon: (<LockIcon fontSize="small" />),
-    title: 'Login'
+    title: 'Clinic Status'
   },
+  {
+    href: '/settings',
+    icon: (<CogIcon fontSize="small" />),
+    title: 'Settings'
+  },
+  // {
+  //   href: '/login',
+  //   icon: (<LockIcon fontSize="small" />),
+  //   title: 'Login'
+  // },
   // {
   //   href: '/register',
   //   icon: (<UserAddIcon fontSize="small" />),
@@ -50,11 +60,7 @@ const items = [
   //   icon: (<UsersIcon fontSize="small" />),
   //   title: 'Customers'
   // },
-  // {
-  //   href: '/settings',
-  //   icon: (<CogIcon fontSize="small" />),
-  //   title: 'Settings'
-  // },
+  
 
   // {
   //   href: '/products',

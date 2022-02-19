@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Google as GoogleIcon } from '../icons/google';
-import { signInWithGoogle} from '../components/firebase/firebase';
+import { signInWithGoogle, theUser } from '../components/firebase/firebase';
 // import { Facebook as FacebookIcon } from '../icons/facebook';
 // import { Phone as P } from '../icons/phone';
 
@@ -36,6 +36,7 @@ const Login = () => {
       router.push('/');
     }
   });
+
 
   return (
     <>

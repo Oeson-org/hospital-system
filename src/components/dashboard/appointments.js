@@ -13,14 +13,20 @@ import {
   TableSortLabel,
   Tooltip
 } from '@mui/material';
-
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../severity-pill';
 import { appointments } from '../../__mocks__/appointments'
+import { useState } from 'react';
 
-export const Appointments = (props) => (
+export function Appointments (props) {
 
-  <Card {...props}>
+  const [sorting, setSorting] = useState(false);
+
+  const dateSorting = () => {
+
+  };
+
+  return (<Card {...props}>
     <CardHeader title="Appointments" />
     <PerfectScrollbar>
       <Box sx={{ maxWidth: 800 }}>
@@ -99,5 +105,5 @@ export const Appointments = (props) => (
         View all
       </Button>
     </Box>
-  </Card >
-);
+  </Card >)
+}
