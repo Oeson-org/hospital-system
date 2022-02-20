@@ -8,10 +8,10 @@ import {
   SvgIcon, Typography
 } from '@mui/material';
 import { Search as SearchIcon } from '../../icons/search';
-// import { Upload as UploadIcon } from '../../icons/upload';
-// import { Download as DownloadIcon } from '../../icons/download';
 
-export const QueryListToolbar = (props) => (
+export function QueryListToolbar (props) {
+  
+  return (
   <Box {...props}>
     <Box
       sx={{
@@ -29,12 +29,13 @@ export const QueryListToolbar = (props) => (
         Queries
       </Typography>
       <Box sx={{ m: 1 }}>
-        {/* <Button
+        <Button
           color="primary"
           variant="contained"
+          href='/queryForm'
         >
           Add Query
-        </Button> */}
+        </Button>
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>
@@ -63,5 +64,5 @@ export const QueryListToolbar = (props) => (
         </CardContent>
       </Card>
     </Box>
-  </Box>
-);
+  </Box>)
+}

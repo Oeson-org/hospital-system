@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Box, Container, Typography, Button } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
 
-function Settings () {
+export default function Status () {
   const [status, setStatus] = useState(false); 
 
   return(
@@ -59,10 +59,10 @@ function Settings () {
   )
 }
 
-Settings.getLayout = (page) => (
+Status.getLayout = (page) => (
   <DashboardLayout>
     {page}
   </DashboardLayout>
 );
 
-export default Settings;
+//  Status;

@@ -65,7 +65,7 @@ export const QueryListResults = ({ queries, ...rest }) => {
   return (
     <Card {...rest}>
       <PerfectScrollbar>
-        <Box sx={{ minWidth: 1050 }}>
+        <Box sx={{ maxWidth: 1200 }}>
           <Table>
             <TableHead>
               <TableRow>

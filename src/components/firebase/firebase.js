@@ -1,7 +1,7 @@
 // import firebase from 'firebase/compat/app';
 import { initializeApp } from "firebase/app"
-import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
-import { getAuth, signInWithPopup as popOut, GoogleAuthProvider, signOut, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+import { getFirestore } from 'firebase/firestore';
+import { getAuth, signInWithPopup as popOut, GoogleAuthProvider, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 

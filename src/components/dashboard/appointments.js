@@ -16,20 +16,15 @@ import {
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../severity-pill';
 import { appointments } from '../../__mocks__/appointments'
-import { useState } from 'react';
 
 export function Appointments (props) {
 
-  const [sorting, setSorting] = useState(false);
-
-  const dateSorting = () => {
-
-  };
+  
 
   return (<Card {...props}>
     <CardHeader title="Appointments" />
     <PerfectScrollbar>
-      <Box sx={{ maxWidth: 800 }}>
+      <Box sx={{ maxWidth: 1200 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -68,7 +63,7 @@ export function Appointments (props) {
                   {appointment.ref}
                 </TableCell>
                 <TableCell>
-                  {appointment.customer.name}
+                  {appointment.patient}
                 </TableCell>
                 <TableCell>
                   {format(appointment.createdAt, 'dd/MM/yyyy')}

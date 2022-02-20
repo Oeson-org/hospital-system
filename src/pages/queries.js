@@ -19,9 +19,9 @@ const Queries = () => (
         py: 8
       }}
     >
-      <Container maxWidth={false}>
+      <Container maxWidth={true}>
         <QueryListToolbar />
-        <Box sx={{ mt: 3 }}>
+        <Box sx={{ mt: 2 }}>
           <QueryListResults queries={queries} />
         </Box>
       </Container>
