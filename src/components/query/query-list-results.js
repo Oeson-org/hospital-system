@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
@@ -16,17 +16,31 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from '../firebase/firebase'
+
 
 export const QueryListResults = ({ queries, ...rest }) => {
   const [selectedQueryIds, setSelectedQueryIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
+  const [theQuery, setTheQuery] = useState([])
+
+  // useEffect(() => {
+  //   const q = query(collection(db, 'query'))
+  //   onSnapshot(q, (querySnapshot) => {
+  //     setTheQuery(querySnapshot.docs.map(doc => ({
+  //       id: doc.id,
+  //       data: doc.data()
+  //     })))
+  //   })
+  // },[])
   const handleSelectAll = (event) => {
     let newSelectedQueryIds;
 
     if (event.target.checked) {
-      newSelectedQueryIds = queries.map((query) => query.id);
+      newSelectedQueryIds = queries.map((q) => q.id);
     } else {
       newSelectedQueryIds = [];
     }
@@ -98,16 +112,16 @@ export const QueryListResults = ({ queries, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {queries.slice(0, limit).map((query) => (
+              {queries.slice(0, limit).map((q) => (
                 <TableRow
                   hover
-                  key={query.id}
-                  selected={selectedQueryIds.indexOf(query.id) !== -1}
+                  key={q.id}
+                  selected={selectedQueryIds.indexOf(q.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedQueryIds.indexOf(query.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, query.id)}
+                      checked={selectedQueryIds.indexOf(q.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, q.id)}
                       value="true"
                     />
                   </TableCell>
@@ -118,31 +132,26 @@ export const QueryListResults = ({ queries, ...rest }) => {
                         display: 'flex'
                       }}
                     >
-                      <Avatar
-                        src={query.avatarUrl}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(query.name)}
-                      </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {query.name}
+                        {q.name}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {query.email}
+                    {q.email}
                   </TableCell>
                   <TableCell>
-                    {query.phone}
+                    {q.phone}
                   </TableCell>
                   <TableCell>
-                    {query.query}
+                    {q.query}
                   </TableCell>
                   <TableCell>
-                    {format(query.createdAt, 'dd/MM/yyyy')}
+                    {/* {q.created} */}
+                    {format(q.createdAt, 'dd/MM/yyyy')}
                   </TableCell>
                 </TableRow>
               ))}

@@ -91,6 +91,7 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 size="large"
                 variant="contained"
+                // href='/'
               >
                 Login with Google
               </Button>
@@ -145,6 +146,7 @@ const Login = () => {
               size="large"
               type="submit"
               variant="contained"
+              href='/'
             >
               Sign In
             </Button>

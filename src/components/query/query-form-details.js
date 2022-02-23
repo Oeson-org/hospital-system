@@ -18,7 +18,14 @@ export function TheQueryForm (props) {
         theDate: ''
     });  
 
+
+
     const handleSubmit = async (event) => {
+      // let reader = new FileReader();
+      // reader.onload = function(e) {
+      //   this.setState({uploadedImage: values.photo});
+      // };
+      // reader.readAsDataURL(event.target.files[0]);
         event.preventDefault()
         try {
             await addDoc(collection(db, 'query'), {
@@ -41,7 +48,6 @@ export function TheQueryForm (props) {
         [event.target.name]: event.target.value
       });
     };
-
 
     return (
       <form
@@ -153,6 +159,20 @@ export function TheQueryForm (props) {
                   variant="outlined"
                 />
               </Grid>
+              {/* <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  type="file"
+                  name="photo"
+                  onChange={handleChange}
+                  required
+                  variant="outlined"
+                />
+              </Grid> */}
   
             </Grid>
           </CardContent>
