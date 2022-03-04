@@ -42,7 +42,7 @@ export function QueryListToolbar (props) {
       <Card>
         <CardContent>
           <Box sx={{ maxWidth: 500 }}>
-            {/* <TextField
+            <TextField
               fullWidth
               InputProps={{
                 startAdornment: (
@@ -58,8 +58,7 @@ export function QueryListToolbar (props) {
               }}
               placeholder="Search Query By Name"
               variant="outlined"
-            /> */}
-            More Features Coming Soon
+            />
           </Box>
         </CardContent>
       </Card>

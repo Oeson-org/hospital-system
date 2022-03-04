@@ -150,7 +150,6 @@ export const QueryListResults = ({ queries, ...rest }) => {
                     {q.query}
                   </TableCell>
                   <TableCell>
-                    {/* {q.created} */}
                     {format(q.createdAt, 'dd/MM/yyyy')}
                   </TableCell>
                 </TableRow>

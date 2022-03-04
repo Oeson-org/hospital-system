@@ -45,39 +45,14 @@ const Register = () => {
           [true],
           'This field must be checked'
         )
-      // firstName: Yup
-      //   .string()
-      //   .max(255)
-      //   .required(
-      //     'First name is required'),
-      // lastName: Yup
-      //   .string()
-      //   .max(255)
-      //   .required(
-      //     'Last name is required'),
     }),
     onSubmit: () => {
       router.push('/login');
     }
   });
 
-  const auth = getAuth();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  // const signUp = e => {
-  //   e.preventDefault();
-  //   createUserWithEmailAndPassword(
-  //     auth,
-  //     emailRef.current.value,
-  //     passwordRef.current.value
-  //   ).then(user => {
-  //     console.lop(user)
-  //   }).catch(err => {
-  //     console.log(err)
-  //   }).then(router.push('/login'))  
-
-  // }
-
 
   return (
     <>
@@ -96,17 +71,6 @@ const Register = () => {
         }}
       >
         <Container maxWidth="sm">
-          {/* <NextLink
-            href="/"
-            passHref
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
-              Dashboard
-            </Button>
-          </NextLink> */}
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography
@@ -123,30 +87,6 @@ const Register = () => {
                 Use your email to create a new account
               </Typography>
             </Box>
-            {/* <TextField
-              error={Boolean(formik.touched.firstName && formik.errors.firstName)}
-              fullWidth
-              helperText={formik.touched.firstName && formik.errors.firstName}
-              label="First Name"
-              margin="normal"
-              name="firstName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.firstName}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.lastName && formik.errors.lastName)}
-              fullWidth
-              helperText={formik.touched.lastName && formik.errors.lastName}
-              label="Last Name"
-              margin="normal"
-              name="lastName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.lastName}
-              variant="outlined"
-            /> */}
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
               fullWidth

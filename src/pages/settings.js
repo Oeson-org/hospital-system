@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { Box, Container, Typography, Button } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
-// import { SettingsNotifications } from '../components/settings/settings-notifications';
 import { SettingsPassword } from '../components/settings/settings-password';
 
 function Settings () {
@@ -31,7 +30,7 @@ function Settings () {
         >
           Settings
         </Typography>
-        {/* <SettingsNotifications /> */}
+
         <Box sx={{ pt: 3 }}>
           { showEdit && <SettingsPassword /> }
         </Box>

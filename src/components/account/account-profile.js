@@ -42,18 +42,6 @@ export function AccountProfile (props) {
           >
             {user.name}
           </Typography>
-          {/* <Typography
-            color="textSecondary"
-            variant="body2"
-          >
-            {`${user.city} ${user.country}`}
-          </Typography>
-          <Typography
-            color="textSecondary"
-            variant="body2"
-          >
-            {user.timezone}
-          </Typography> */}
         </Box>
       </CardContent>
       <Divider />

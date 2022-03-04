@@ -36,8 +36,6 @@ export default function Status () {
           Open
         </Typography>) }
         
-        {/* <SettingsNotifications /> */}
-
         { !status && <Button
               component="a"
               sx={{ mt: 3 }}
@@ -64,5 +62,3 @@ Status.getLayout = (page) => (
     {page}
   </DashboardLayout>
 );
-
-//  Status;

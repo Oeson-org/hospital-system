@@ -2,18 +2,12 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NavItem } from './nav-item';
 import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import { User as UserIcon } from '../icons/user';
-import { UserAdd as UserAddIcon } from '../icons/user-add';
+import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
 import { Lock as LockIcon } from '../icons/lock';
 import { Selector as SelectorIcon } from '../icons/selector';
 import { Cog as CogIcon } from '../icons/cog';
-import { Users as UsersIcon } from '../icons/users';
-// import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag';
-// import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
-// import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import NextLink from 'next/link';
 
 const items = [
@@ -22,11 +16,6 @@ const items = [
     icon: (<ChartBarIcon fontSize="small" />),
     title: 'Dashboard'
   },
-  // {
-  //   href: '/account',
-  //   icon: (<UserIcon fontSize="small" />),
-  //   title: 'Account'
-  // },
   {
     href: '/queries',
     icon: (<SelectorIcon fontSize="small" />),
@@ -42,34 +31,6 @@ const items = [
     icon: (<CogIcon fontSize="small" />),
     title: 'Settings'
   },
-  // {
-  //   href: '/login',
-  //   icon: (<LockIcon fontSize="small" />),
-  //   title: 'Login'
-  // },
-  // {
-  //   href: '/register',
-  //   icon: (<UserAddIcon fontSize="small" />),
-  //   title: 'Register'
-  // },
-  // {
-  //   href: '/customers',
-  //   icon: (<UsersIcon fontSize="small" />),
-  //   title: 'Customers'
-  // },
-  
-
-  // {
-  //   href: '/products',
-  //   icon: (<ShoppingBagIcon fontSize="small" />),
-  //   title: 'Products'
-  // },
-
-  // {
-  //   href: '/404',
-  //   icon: (<XCircleIcon fontSize="small" />),
-  //   title: 'Error'
-  // }
 ];
 
 export const DashboardSidebar = (props) => {

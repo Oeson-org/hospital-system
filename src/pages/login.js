@@ -53,19 +53,6 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-          {/* {(user) ? <NextLink
-            href="/"
-            passHref
-
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
-              Dashboard
-            </Button>
-          </NextLink> : <></>} */}
-
           <Box sx={{ my: 5 }}>
             <Typography
               color="textPrimary"
@@ -91,7 +78,7 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 size="large"
                 variant="contained"
-                // href='/'
+                href='/'
               >
                 Login with Google
               </Button>
