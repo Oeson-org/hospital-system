@@ -3,8 +3,10 @@ const router = require("express").Router();
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { v4: uuidv4 } = require("uuid");
+const dayjs = require('dayjs');
 const response = require("../services/responses").responseFactory;
 const db = require("../services/db");
+const log = require("../services/logger").log;
 // Uses a request body like:
 // { from: 2020-01-01<JS Date Type>, to: 2020-01-31<JS Date Type>,
 // isAdmin: true<Boolean Type>, usedID: "userID"<String Type> }
@@ -12,7 +14,7 @@ const checkAdmin = (req, res, next) => {
   if (req.body.isAdmin === true) {
     next();
   } else {
-    functions.logger.error("Not Admin account");
+    log("error", "Not Admin account");
     res.status(200).json(response(
       "You are not authorized to perform this action",
       null,
@@ -20,26 +22,44 @@ const checkAdmin = (req, res, next) => {
     ));
   }
 };
+function generateSlotMap(start, end, span, gap) {
+  if (!start) return {}
+  let slots = { [start.split("T")[1].split(".")[0]]: { id: uuidv4(), appnmt_id: null } };
+  let lastSlot = dayjs(end).subtract(span + gap, "minute").toJSON();
+  while (lastSlot > start) {
+    let nextStart = dayjs(start)
+      .add(span + gap, "minute")
+      .toJSON();
+
+    slots[nextStart.split("T")[1].split(".")[0]] = { id: uuidv4(), appnmt_id: null };
+    start = nextStart;
+  }
+  return slots;
+}
 const createBooking = async (req, res) => {
-  const { from, to, userID } = req.body;
-  functions.logger.info({ "Incoming Data": req.body });
-  const slot_id = uuidv4();
+  const { date, slotspan, gap, starttime, endtime } = req.body;
+  log("info", { "Incoming Data": req.body });
+  let string_date = date;
+  slots = generateSlotMap(starttime, endtime, slotspan, gap);
+  log("info", { "Generated Slots": slots });
   const booking = {
-    userID: userID,
-    from: from,
-    to: to,
-    attendee: [],
+    date,
+    slotspan,
+    slots,
+    endtime,
+    starttime,
   };
-  booking["from"] = admin.firestore.Timestamp.fromDate(new Date(booking["from"]));
-  booking["to"] = admin.firestore.Timestamp.fromDate(new Date(booking["to"]));
-  functions.logger.log({ "ID": userID, "Feeding Data": booking });
-  const bookingRef = await db.write("slots", slot_id, booking);
+  booking["date"] = admin.firestore.Timestamp.fromDate(new Date(booking["date"]));
+  booking["starttime"] = admin.firestore.Timestamp.fromDate(new Date(booking["starttime"]));
+  booking["endtime"] = admin.firestore.Timestamp.fromDate(new Date(booking["endtime"]));
+  log("log", { "Feeding Data": booking });
+  const bookingRef = await db.write("slots", string_date, booking);
   res.status(200).json(response(
     "Slot created successfully",
     1,
-    { slot_id: slot_id, booking: booking }
+    { booking: booking }
   ));
-  functions.logger.info({ id: userID, slot: bookingRef });
+  log("info", { slot: bookingRef });
 };
 router.post("/", checkAdmin, createBooking);
 module.exports = router;
