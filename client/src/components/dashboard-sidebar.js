@@ -2,21 +2,13 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NavItem } from './nav-item';
 import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import { User as UserIcon } from '../icons/user';
-import { UserAdd as UserAddIcon } from '../icons/user-add';
+import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
-import { Cog as CogIcon } from '../icons/cog';
 import { Lock as LockIcon } from '../icons/lock';
-
-// import { Selector as SelectorIcon } from '../icons/selector';
-// import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag';
-// import { Users as UsersIcon } from '../icons/users';
-// import { XCircle as XCircleIcon } from '../icons/x-circle';
-// import { Logo } from './logo';
-// import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-// import NextLink from 'next/link';
-
+import { Selector as SelectorIcon } from '../icons/selector';
+import { Cog as CogIcon } from '../icons/cog';
+import { Logo } from './logo';
+import NextLink from 'next/link';
 
 const items = [
   {
@@ -25,42 +17,20 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/account',
-    icon: (<UserIcon fontSize="small" />),
-    title: 'Account'
+    href: '/queries',
+    icon: (<SelectorIcon fontSize="small" />),
+    title: 'Query'
   },
-
   {
-    href: '/login',
+    href: '/clinicStatus',
     icon: (<LockIcon fontSize="small" />),
-    title: 'Login'
+    title: 'Clinic Status'
   },
   {
-    href: '/register',
-    icon: (<UserAddIcon fontSize="small" />),
-    title: 'Register'
+    href: '/settings',
+    icon: (<CogIcon fontSize="small" />),
+    title: 'Settings'
   },
-  // {
-  //   href: '/settings',
-  //   icon: (<CogIcon fontSize="small" />),
-  //   title: 'Settings'
-  // },
-  // {
-  //   href: '/customers',
-  //   icon: (<UsersIcon fontSize="small" />),
-  //   title: 'Customers'
-  // },
-  // {
-  //   href: '/products',
-  //   icon: (<ShoppingBagIcon fontSize="small" />),
-  //   title: 'Products'
-  // },
-
-  // {
-  //   href: '/404',
-  //   icon: (<XCircleIcon fontSize="small" />),
-  //   title: 'Error'
-  // }
 ];
 
 export const DashboardSidebar = (props) => {
@@ -94,7 +64,7 @@ export const DashboardSidebar = (props) => {
           height: '100%'
         }}
       >
-        {/* <div>
+        <div>
           <Box sx={{ p: 3 }}>
             <NextLink
               href="/"
@@ -128,27 +98,20 @@ export const DashboardSidebar = (props) => {
                   color="inherit"
                   variant="subtitle1"
                 >
-                  Acme Inc
+                  Hospital System
                 </Typography>
                 <Typography
                   color="neutral.400"
                   variant="body2"
                 >
-                  Your tier
+                  Position
                   {' '}
-                  : Premium
+                  : Admin
                 </Typography>
               </div>
-              <SelectorIcon
-                sx={{
-                  color: 'neutral.500',
-                  width: 14,
-                  height: 14
-                }}
-              />
             </Box>
           </Box>
-        </div> */}
+        </div>
         <Divider
           sx={{
             borderColor: '#2D3748',
@@ -172,38 +135,6 @@ export const DashboardSidebar = (props) => {
             py: 3
           }}
         >
-
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            {/* <img
-              alt="Go to pro"
-              src="/static/images/sidebar_pro.png"
-            /> */}
-          </Box>
-          {/* <NextLink
-            href="https://material-kit-pro-react.devias.io/"
-            passHref
-          >
-            <Button
-              color="secondary"
-              component="a"
-              endIcon={(<OpenInNewIcon />)}
-              fullWidth
-              sx={{ mt: 2 }}
-              variant="contained"
-            >
-              Pro Live Preview
-            </Button>
-          </NextLink> */}
         </Box>
       </Box>
     </>

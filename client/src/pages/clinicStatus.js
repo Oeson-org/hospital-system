@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { Box, Container, Typography, Button } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { SettingsPassword } from '../components/settings/settings-password';
 
-function Settings () {
-
-
-  const [showEdit, setShowEdit] = useState(false);
+export default function Status () {
+  const [status, setStatus] = useState(false); 
 
   return(
   <>
     <Head>
-      <title>
-        Settings
-      </title>
+      {(!status && <title>
+        Close
+      </title>) || (status && <title>
+        Open
+      </title>) }
     </Head>
     <Box
       component="main"
@@ -24,30 +23,33 @@ function Settings () {
       }}
     >
       <Container maxWidth="lg">
-        <Typography
+      {(!status && <Typography
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Settings
-        </Typography>
-
-        <Box sx={{ pt: 3 }}>
-          { showEdit && <SettingsPassword /> }
-        </Box>
-        { !showEdit && <Button
+          Close
+        </Typography>) || 
+        (status && <Typography
+          sx={{ mb: 3 }}
+          variant="h4"
+        >
+          Open
+        </Typography>) }
+        
+        { !status && <Button
               component="a"
               sx={{ mt: 3 }}
               variant="outlined"
-              onClick={() => setShowEdit(!showEdit)}
+              onClick={() => setStatus(!status)}
             >
-              Set Up New Password
-        </Button> || showEdit && <Button
+              Open Appointment
+        </Button> || status && <Button
               component="a"
               sx={{ mt: 3 }}
               variant="outlined"
-              onClick={() => setShowEdit(!showEdit)}
+              onClick={() => setStatus(!status)}
             >
-              Cancel Password Setting
+              Close
         </Button> }
       </Container>
     </Box>
@@ -55,10 +57,8 @@ function Settings () {
   )
 }
 
-Settings.getLayout = (page) => (
+Status.getLayout = (page) => (
   <DashboardLayout>
     {page}
   </DashboardLayout>
 );
-
-export default Settings;

@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import { CacheProvider } from '@emotion/react';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -16,6 +17,7 @@ const App = (props) => {
 
   return (
     <CacheProvider value={emotionCache}>
+
       <Head>
         <title>
           Hospital Services

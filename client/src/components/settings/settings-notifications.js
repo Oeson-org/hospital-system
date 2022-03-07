@@ -46,7 +46,6 @@ export const SettingsNotifications = (props) => (
               control={(
                 <Checkbox
                   color="primary"
-                  defaultChecked
                 />
               )}
               label="Email"
@@ -55,7 +54,6 @@ export const SettingsNotifications = (props) => (
               control={(
                 <Checkbox
                   color="primary"
-                  defaultChecked
                 />
               )}
               label="Push Notifications"
@@ -68,7 +66,6 @@ export const SettingsNotifications = (props) => (
               control={(
                 <Checkbox
                   color="primary"
-                  defaultChecked
                 />
               )}
               label="Phone calls"
@@ -95,7 +92,6 @@ export const SettingsNotifications = (props) => (
               control={(
                 <Checkbox
                   color="primary"
-                  defaultChecked
                 />
               )}
               label="Email"
@@ -107,8 +103,7 @@ export const SettingsNotifications = (props) => (
             <FormControlLabel
               control={(
                 <Checkbox
-                  color="primary"
-                  defaultChecked
+                  color="primary"                  
                 />
               )}
               label="Phone calls"
