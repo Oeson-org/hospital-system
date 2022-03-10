@@ -15,7 +15,7 @@ const checkAdmin = (req, res, next) => {
     next();
   } else {
     log("error", "Not Admin account");
-    res.status(200).json(response(
+    res.status(401).json(response(
       "You are not authorized to perform this action",
       null,
       null
