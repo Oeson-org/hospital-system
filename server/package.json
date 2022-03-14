@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Oeson-org/hospital-system#readme",
   "dependencies": {
     "firebase": "^9.6.4"
+  },
+  "devDependencies": {
+    "artillery": "^2.0.0-12"
   }
 }
