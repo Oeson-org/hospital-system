@@ -1,0 +1,36 @@
+config:
+  target: "http://localhost:5001/hospital-server-2688c/us-central1/app"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "warming up"
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: "starting to fire"
+    - duration: 600
+      arrivalRate: 50
+      name: "full speed"
+scenarios:
+  - name: "create slots"
+    flow:
+      - post:
+          url: "/create-slots"
+          json:
+            date: "2022-03-25T00:00:00.171Z"
+            slotspan: "10"
+            gap: "5"
+            starttime: "2022-03-25T08:00:00.171Z"
+            endtime: "2022-03-25T10:00:00.171Z"
+            isAdmin: true
+      - get:
+          url: "/find-slots?date=2022-03-25T00:00:00.171Z"
+      - post:
+          url: "/book-slot"
+          json:
+            date: "2022-03-25T00:00:00.171Z"
+            time: "08:45:00"
+            name: "sb"
+            email: "sb@z.com"
+            message: "test_request"  
+          
