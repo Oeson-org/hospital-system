@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "41306366-dcef-48b5-b29b-0ae0b7ccc7b4",
+		"name": "Booking Availability",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create available slots",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2022-03-25T00:00:00.171Z\",\r\n    \"slotspan\": \"10\",\r\n    \"gap\": \"5\",\r\n    \"starttime\": \"2022-03-25T08:00:00.171Z\",\r\n    \"endtime\": \"2022-03-25T10:00:00.171Z\",\r\n    \"isAdmin\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/create-slots",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"hospital-server-2688c",
+						"us-central1",
+						"app",
+						"create-slots"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create available slots",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-03-25T00:00:00.171Z\",\r\n    \"slotspan\": \"10\",\r\n    \"gap\": \"5\",\r\n    \"starttime\": \"2022-03-25T08:00:00.171Z\",\r\n    \"endtime\": \"2022-03-25T10:00:00.171Z\",\r\n    \"isAdmin\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/create-slots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"hospital-server-2688c",
+								"us-central1",
+								"app",
+								"create-slots"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "864"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"360-JkrjfjVNzDZNuUKye5+KJqx/9LI\""
+						},
+						{
+							"key": "date",
+							"value": "Thu, 10 Mar 2022 11:23:58 GMT"
+						},
+						{
+							"key": "connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "keep-alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Slot created successfully\",\n    \"pages\": 1,\n    \"data\": {\n        \"booking\": {\n            \"date\": {\n                \"_seconds\": 1648166400,\n                \"_nanoseconds\": 171000000\n            },\n            \"slotspan\": \"10\",\n            \"slots\": {\n                \"08:00:00\": {\n                    \"id\": \"f668c1b7-b6bf-4d66-b58e-9feb09757f18\",\n                    \"appnmt_id\": null\n                },\n                \"08:15:00\": {\n                    \"id\": \"2e668096-8323-400b-b133-f7e00ae7efee\",\n                    \"appnmt_id\": null\n                },\n                \"08:30:00\": {\n                    \"id\": \"513bdfab-54b5-4a19-b318-303087f48c8b\",\n                    \"appnmt_id\": null\n                },\n                \"08:45:00\": {\n                    \"id\": \"99bd7f13-66b5-4cd8-81c8-239845b7ae91\",\n                    \"appnmt_id\": null\n                },\n                \"09:00:00\": {\n                    \"id\": \"77d5dfd6-86ed-4339-9e2f-020281d23fb1\",\n                    \"appnmt_id\": null\n                },\n                \"09:15:00\": {\n                    \"id\": \"ce3655d9-8656-4a0e-8299-030716ec0271\",\n                    \"appnmt_id\": null\n                },\n                \"09:30:00\": {\n                    \"id\": \"cb3395ce-1149-40c7-80b5-ddaa44c525dc\",\n                    \"appnmt_id\": null\n                },\n                \"09:45:00\": {\n                    \"id\": \"e3bc5185-4f1e-436b-a05f-886406979fff\",\n                    \"appnmt_id\": null\n                }\n            },\n            \"endtime\": {\n                \"_seconds\": 1648202400,\n                \"_nanoseconds\": 171000000\n            },\n            \"starttime\": {\n                \"_seconds\": 1648195200,\n                \"_nanoseconds\": 171000000\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Find Slots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/find-slots?date=2022-03-25T00:00:00.171Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"hospital-server-2688c",
+						"us-central1",
+						"app",
+						"find-slots"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2022-03-25T00:00:00.171Z"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find Slots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/find-slots?date=2022-03-25T00:00:00.171Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"hospital-server-2688c",
+								"us-central1",
+								"app",
+								"find-slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-03-25T00:00:00.171Z"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "2163"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"873-/NEJtrICZmHb7+JOQaiGmWob4SY\""
+						},
+						{
+							"key": "date",
+							"value": "Sat, 12 Mar 2022 11:40:44 GMT"
+						},
+						{
+							"key": "connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "keep-alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Slots found\",\n    \"pages\": 1,\n    \"data\": {\n        \"date\": {\n            \"timestampValue\": {\n                \"seconds\": \"1648166400\",\n                \"nanos\": 171000000\n            },\n            \"valueType\": \"timestampValue\"\n        },\n        \"slotspan\": {\n            \"stringValue\": \"10\",\n            \"valueType\": \"stringValue\"\n        },\n        \"endtime\": {\n            \"timestampValue\": {\n                \"seconds\": \"1648202400\",\n                \"nanos\": 171000000\n            },\n            \"valueType\": \"timestampValue\"\n        },\n        \"starttime\": {\n            \"timestampValue\": {\n                \"seconds\": \"1648195200\",\n                \"nanos\": 171000000\n            },\n            \"valueType\": \"timestampValue\"\n        },\n        \"slots\": {\n            \"mapValue\": {\n                \"fields\": {\n                    \"08:00:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"160286bd-87f6-456c-891b-0853da745271\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"09:45:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"c3c39b4c-da7e-45a4-814b-06aec2064b17\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"09:15:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"82c71a6c-a1a6-4260-adfa-7278112368dc\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"09:00:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"f157704a-9c7f-4774-8cae-ad632e5dd789\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"09:30:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"f50e0a19-8d05-4fea-9d58-a049121f6d81\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"08:30:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"5798e3ea-98ad-4320-a7a6-e0ac2380a528\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"08:15:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"appnmt_id\": {\n                                    \"nullValue\": \"NULL_VALUE\",\n                                    \"valueType\": \"nullValue\"\n                                },\n                                \"id\": {\n                                    \"stringValue\": \"055d77bd-d44a-409d-b590-dd5f047cf57c\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    },\n                    \"08:45:00\": {\n                        \"mapValue\": {\n                            \"fields\": {\n                                \"id\": {\n                                    \"stringValue\": \"4d88b9fa-9053-4038-b7f2-0365a9c31b93\",\n                                    \"valueType\": \"stringValue\"\n                                },\n                                \"appnmt_id\": {\n                                    \"stringValue\": \"8b5624e5-da49-4d5b-b81a-4406bf33dcdb\",\n                                    \"valueType\": \"stringValue\"\n                                }\n                            }\n                        },\n                        \"valueType\": \"mapValue\"\n                    }\n                }\n            },\n            \"valueType\": \"mapValue\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "date",
+							"value": "2022-03-25T00:00:00.171Z",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "08:45:00",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "sb",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sb@z.com",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "request",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/book-slot",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"hospital-server-2688c",
+						"us-central1",
+						"app",
+						"book-slot"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Booking",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "2022-03-25T00:00:00.171Z",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "08:45:00",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "sb",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sb@z.com",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "request",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/hospital-server-2688c/us-central1/app/book-slot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"hospital-server-2688c",
+								"us-central1",
+								"app",
+								"book-slot"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "content-length",
+							"value": "134"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"86-BseA6tslH1sd8Ca5H6aUko3Rt3s\""
+						},
+						{
+							"key": "date",
+							"value": "Tue, 15 Mar 2022 14:23:20 GMT"
+						},
+						{
+							"key": "connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "keep-alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Appoinment Booked\",\n    \"pages\": 1,\n    \"data\": {\n        \"data\": {\n            \"_writeTime\": {\n                \"_seconds\": 1647354200,\n                \"_nanoseconds\": 870254000\n            }\n        },\n        \"error\": null\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
